@@ -1,0 +1,9 @@
+.simpleTab {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    &:hover {
+        color: rgb(247, 210, 0);
+    }
+    display: inline-flex;
+}

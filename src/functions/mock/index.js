@@ -1,8 +1,8 @@
 function getMockTabs() {
   const mockTabs = [{
-    name: 'Anime',
+    name: 'Animes',
     type: 1,
-    link: '#'
+    link: 'animes'
   }];
   return mockTabs;
 }
@@ -15,7 +15,7 @@ function getMockLogo() {
   return mockLogo;
 }
 
-export default {
+export {
   getMockTabs,
   getMockLogo
 }

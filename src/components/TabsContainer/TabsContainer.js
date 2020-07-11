@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './TabsContainer.scss';
 
 const TabsContainer = (props) => {
   const {tabs} = props;
@@ -11,7 +12,7 @@ const TabsContainer = (props) => {
 }
 
 TabsContainer.propTypes = {
-  tabs: PropTypes.arrayOf(PropTypes.SimpleTab)
+  tabs: PropTypes.arrayOf(PropTypes.element)
 }
 
 export default TabsContainer;
