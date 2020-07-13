@@ -1,0 +1,11 @@
+/* -- Default theme -- */
+html {
+  --color-background: rgb(24, 32, 53);
+  --color-foreground: rgb(58, 65, 94);
+  --color-text-basic: rgb(220, 220, 220);
+}
+
+.dark-purple-theme {
+  --color-background: rgb(24, 18, 39);
+  --color-foreground: rgb(50, 37, 72);
+}

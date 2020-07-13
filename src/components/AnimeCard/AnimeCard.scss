@@ -1,0 +1,55 @@
+.animeCard {
+  border: 1px solid gold;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: min-content auto;
+  .animeLink {
+    width: 100%;
+    height: 100%;
+  }
+  .animeCover {
+    height: 250px;
+    .animeImage {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      filter: brightness(0.8);
+      transition: all 0.1s ease-in;
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        box-shadow: inset 1px 1px 40px 1px black;
+        content: "";
+      }
+      &:hover {
+        filter: brightness(1);
+      }
+    }
+  }
+  .animeBadge {
+    border-radius: 100%;
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    box-shadow: 0px 0px 2px white;
+    display: inline-flex;
+  }
+  .animeTitle {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 760px) {
+  .animeCard .animeLink .animeCover {
+    height: 190px;
+  }
+}

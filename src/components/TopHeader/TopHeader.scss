@@ -1,7 +1,6 @@
 #topHeader {
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(48, 45, 51);
-    border-bottom: rgb(61, 57, 65);
-    box-shadow: black 0px 1px 1px 1px;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-foreground);
+  box-shadow: black 0px 1px 1px 1px;
 }

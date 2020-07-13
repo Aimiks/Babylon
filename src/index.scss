@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-Thin.ttf");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-ExtraLight.ttf");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-Light.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-ExtraBold.ttf");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Arima Madurai";
+  src: url("./fonts/ArimaMadurai-Black.ttf");
+  font-weight: 900;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  color: var(--color-text-basic);
+}
+
+#app {
+  background: var(--color-background);
+  height: 100%;
+  width: 100%;
+  font-family: "Arima Madurai", Helvetica, sans-serif;
+}
+
+.container {
+  margin: 0;
+  min-width: 320px;
+  max-width: 1140px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media (max-width: 1540px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 1540px) and (min-width: 1040px) {
+  .container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+@media (max-width: 1040px) {
+  .container {
+    padding: 0;
+  }
+}

@@ -1,11 +1,14 @@
 {
     "env": {
         "browser": true,
-        "es2020": true
+        "es2020": true,
+        "es6": true,
+        "node": true
     },
     "extends": [
         "plugin:react/recommended",
-        "eslint:recommended"
+        "eslint:recommended",
+        "react-app"
     ],
     "parserOptions": {
         "ecmaVersion": 11,

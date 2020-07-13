@@ -1,0 +1,19 @@
+.animeList {
+  display: grid;
+  gap: 25px 20px;
+  grid-template-columns: repeat(auto-fill, 185px);
+  justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .animeList {
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    gap: 25px 20px;
+  }
+}
+@media (max-width: 400px) {
+  .animeList {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 25px 20px;
+  }
+}
