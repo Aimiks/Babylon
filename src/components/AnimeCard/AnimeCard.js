@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "./AnimeCard.scss";
 import AnimeCardDetails from "../AnimeCardDetails/AnimeCardDetails.js";
 import PopUp from "../PopUp/PopUp.js";
+import isRequiredIf from "react-proptype-conditional-require";
 
 const AnimeCard = (props) => {
   const [imgLoadingStatus, setImageLoadingStatus] = useState("loading");
@@ -20,7 +21,7 @@ const AnimeCard = (props) => {
 
   return (
     <React.Fragment>
-      <div className="animeCard">
+      <div className={`animeCard ${props.loading ? "loading" : ""}`}>
         <div className="animeLink" onClick={setShowDetail}>
           <div className={`animeCover ${imgLoadingStatus}`}>
             <img
@@ -45,9 +46,14 @@ const AnimeCard = (props) => {
     </React.Fragment>
   );
 };
+AnimeCard.defaultProps = {
+  status: "UNKNOWN",
+  loading: false,
+};
 AnimeCard.propTypes = {
-  imagePath: PropTypes.string.isRequired,
+  imagePath: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
   status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED"]).isRequired,
-  romajiName: PropTypes.string.isRequired,
+  romajiName: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
+  loading: PropTypes.bool,
 };
 export default AnimeCard;

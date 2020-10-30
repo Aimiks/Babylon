@@ -17,11 +17,21 @@ const AnimesPage = () => {
   }));*/
 
   const [animes, setAnimes] = useState([]);
+  const [count, setCount] = useState([]);
+
   useEffect(() => {
     (async () => {
       try {
         const _animes = await api.getAllAnimeFromAPI();
         setAnimes(_animes);
+      } catch (e) {
+        // need error handling
+      }
+    })();
+    (async () => {
+      try {
+        const _nb = await api.countAllAnimeFromAPI();
+        setCount(_nb);
       } catch (e) {
         // need error handling
       }
@@ -32,7 +42,7 @@ const AnimesPage = () => {
     <div id="animeScreen">
       <div className="container">
         <h3 className="title">Animes</h3>
-        <AnimeList animes={animes}></AnimeList>
+        <AnimeList animes={animes} count={count}></AnimeList>
       </div>
     </div>
   );

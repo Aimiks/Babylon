@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import AnimeCard from "../AnimeCard/AnimeCard";
 import "./AnimeList.scss";
 const AnimeList = (props) => {
-  if (props.animes.length) {
-    const animeList = props.animes.map((anime) => (
-      <AnimeCard key={anime.id ? anime.id : anime.anilistId} {...anime}></AnimeCard>
-    ));
-    return <div className="animeList">{animeList}</div>;
-  } else {
-    return null;
-  }
+  const [animesList, setAnimesList] = useState([]);
+
+  useEffect(() => {
+    setAnimesList(props.animes.map((anime, i) => <AnimeCard key={i} {...anime}></AnimeCard>));
+  }, [props.animes]);
+  useEffect(() => {
+    const length = props.animes ? props.animes.length : 0;
+    if (props.count > length) {
+      const prevLength = length;
+      const tmpAnimes = [...new Array(props.count - prevLength)].map((anime, i) => (
+        <AnimeCard key={prevLength + i} loading={true}></AnimeCard>
+      ));
+      setAnimesList(tmpAnimes);
+    }
+  }, [props.count, props.animes]);
+  return <div className="animeList">{animesList}</div>;
 };
 AnimeList.propTypes = {
   animes: PropTypes.arrayOf(

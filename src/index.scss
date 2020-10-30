@@ -42,11 +42,14 @@ html {
   height: 100%;
   min-height: 100vh;
 }
+body,
+#root {
+  height: 100%;
+}
 html,
 body,
 #root {
   margin: 0;
-  height: 100%;
   color: var(--color-text-basic);
 }
 
@@ -55,4 +58,9 @@ body,
   height: 100%;
   width: 100%;
   font-family: "Arima Madurai", Helvetica, sans-serif;
+  padding-bottom: 40px;
+}
+
+* {
+  box-sizing: border-box;
 }

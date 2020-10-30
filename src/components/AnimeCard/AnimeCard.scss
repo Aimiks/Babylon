@@ -4,6 +4,7 @@
   grid-template-rows: auto;
   position: relative;
   width: 185px;
+  animation: growCard ease 0.3s;
   .animeLink {
     width: 100%;
     height: 100%;
@@ -22,12 +23,12 @@
         background: linear-gradient(
           to right,
           rgba(146, 255, 96, 0) 10%,
-          rgba(255, 255, 255, 0.155) 55%,
+          rgba(255, 255, 255, 0.05) 55%,
           rgba(255, 245, 152, 0) 100%
         );
         animation: loadingCover linear 2s infinite running;
         content: "";
-        width: 80%;
+        width: 200%;
         height: 100%;
         position: absolute;
         top: 0;
@@ -74,7 +75,7 @@
     top: -5px;
   }
   .animeTitle {
-    margin-top: 5px;
+    margin-top: 10px;
     -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -83,10 +84,33 @@
     color: var(--color-text-basic);
     box-sizing: border-box;
     padding: 0 10px;
-    text-align: center;
+    text-align: left;
     :any-link {
       text-decoration: none;
       color: var(--color-text-basic);
+    }
+  }
+  &.loading {
+    .animeTitle {
+      background-color: var(--color-foreground);
+      width: 80%;
+      height: 1em;
+      position: relative;
+      border-radius: 5px;
+      &::after {
+        background: linear-gradient(
+          to right,
+          rgba(146, 255, 96, 0) 10%,
+          rgba(255, 255, 255, 0.05) 55%,
+          rgba(255, 245, 152, 0) 100%
+        );
+        animation: loadingCover linear 2s infinite running;
+        content: "";
+        width: 200%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+      }
     }
   }
 }
@@ -99,9 +123,17 @@
 
 @keyframes loadingCover {
   from {
-    left: -100%;
+    left: -200%;
   }
   to {
-    left: 100%;
+    left: 200%;
+  }
+}
+@keyframes growCard {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
   }
 }
