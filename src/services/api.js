@@ -1,10 +1,11 @@
 import config from "../config";
+import anilist from "./anilist";
 
 const api = {};
 const def_headers = new Headers({
   "Content-Type": "application/json",
 });
-const def_init = {
+const def_options = {
   method: "GET",
   mode: "cors",
   cache: "default",
@@ -15,7 +16,7 @@ api.getAllAnimeFromAPI = async function () {
   const route = "/animes";
   let res = null;
   try {
-    const response = await fetch(config.API_URL + route, def_init);
+    const response = await fetch(config.API_URL + route, def_options);
     const json = await response.json();
     res = json;
   } catch (e) {
@@ -27,7 +28,7 @@ api.countAllAnimeFromAPI = async function () {
   const route = "/animes/size";
   let res = null;
   try {
-    const response = await fetch(config.API_URL + route, def_init);
+    const response = await fetch(config.API_URL + route, def_options);
     const json = await response.json();
     res = json;
   } catch (e) {

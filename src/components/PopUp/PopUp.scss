@@ -1,0 +1,66 @@
+.popupContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  animation: fadeIn ease-out;
+  .popup {
+    position: absolute;
+    top: 40px;
+    background: var(--color-foreground);
+    width: 70%;
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    animation: slideUp ease-out;
+    animation-duration: inherit;
+  }
+  &.closed {
+    animation: fadeOut ease-in;
+    animation-fill-mode: both;
+    animation-duration: inherit;
+
+    .popup {
+      animation: slideDown ease-out;
+      animation-fill-mode: both;
+      animation-duration: inherit;
+    }
+  }
+}
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
+@keyframes fadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.45);
+  }
+  to {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes slideUp {
+  from {
+    top: 100%;
+  }
+  to {
+    top: 40px;
+  }
+}
+@keyframes slideDown {
+  from {
+    top: 40px;
+  }
+  to {
+    top: 100%;
+  }
+}

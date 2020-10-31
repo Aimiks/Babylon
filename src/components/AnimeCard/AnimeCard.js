@@ -1,59 +1,32 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import PropTypes from "prop-types";
 import "./AnimeCard.scss";
-import AnimeCardDetails from "../AnimeCardDetails/AnimeCardDetails.js";
-import PopUp from "../PopUp/PopUp.js";
 import isRequiredIf from "react-proptype-conditional-require";
+import AnimeCardInfos from "../AnimeCardInfos/AnimeCardInfos";
 
 const AnimeCard = (props) => {
-  const [imgLoadingStatus, setImageLoadingStatus] = useState("loading");
-  const [showDetails, setShowDetail] = useState(false);
-  const portalContainer = document.getElementById("app");
-
-  const handleImageLoaded = () => {
-    setImageLoadingStatus("loaded");
-  };
-
-  const handleImageErrored = () => {
-    setImageLoadingStatus("errored");
+  const handleClick = () => {
+    if (props.onClick) {
+      props.onClick(props.id);
+    }
   };
 
   return (
-    <React.Fragment>
-      <div className={`animeCard ${props.loading ? "loading" : ""}`}>
-        <div className="animeLink" onClick={setShowDetail}>
-          <div className={`animeCover ${imgLoadingStatus}`}>
-            <img
-              alt={`cover of ${props.romajiName}`}
-              className="animeImage"
-              src={props.imagePath}
-              onLoad={handleImageLoaded}
-              onError={handleImageErrored}
-            ></img>
-          </div>
-          <div className={`animeBadge ${props.status}`}></div>
-          <div className="animeTitle">{props.romajiName}</div>
-        </div>
-      </div>
-      {showDetails &&
-        ReactDOM.createPortal(
-          <PopUp onClose={() => setShowDetail(false)}>
-            <AnimeCardDetails {...props} />
-          </PopUp>,
-          portalContainer
-        )}
-    </React.Fragment>
+    <div className={`animeCard ${props.loading ? "loading" : ""}`} onClick={handleClick}>
+      <AnimeCardInfos key={props.id} {...props} />
+    </div>
   );
 };
 AnimeCard.defaultProps = {
   status: "UNKNOWN",
   loading: false,
+  romajiName: "",
 };
 AnimeCard.propTypes = {
   imagePath: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
   status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED"]).isRequired,
   romajiName: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
   loading: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 export default AnimeCard;

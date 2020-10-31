@@ -73,6 +73,14 @@
     box-shadow: white 0px 0px 10px 1px;
     left: -5px;
     top: -5px;
+    &.RELEASING {
+      background-color: rgb(49, 131, 255);
+      box-shadow: rgb(49, 131, 255) 0px 0px 10px 1px;
+    }
+    &.FINISHED {
+      background-color: rgb(86, 175, 78);
+      box-shadow: rgb(86, 175, 78) 0px 0px 10px 1px;
+    }
   }
   .animeTitle {
     margin-top: 10px;

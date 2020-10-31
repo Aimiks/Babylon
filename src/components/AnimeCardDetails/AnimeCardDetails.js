@@ -1,31 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./AnimeCardDetails.scss";
 const AnimeCardDetails = (props) => {
-  const [imgLoadingStatus, setImageLoadingStatus] = useState("loading");
-
-  const handleImageLoaded = () => {
-    setImageLoadingStatus("loaded");
-  };
-
-  const handleImageErrored = () => {
-    setImageLoadingStatus("errored");
-  };
-
   return (
     <div className="animeCardDetails">
-      <div className={`cover ${imgLoadingStatus}`}>
-        <img
-          alt={`cover of ${props.title}`}
-          className="animeImage"
-          src={props.coverLink}
-          onLoad={handleImageLoaded}
-          onError={handleImageErrored}
-        ></img>
-      </div>
+      <div className={`cover`} style={{ backgroundImage: `url(${props.imagePath})` }}></div>
       <div className="details">
         <div className="header">
-          <span className="title">{props.title}</span>
+          <span className="title">{props.romajiName}</span>
         </div>
         <div className="description"></div>
         <div className="episodesList"></div>
@@ -34,9 +16,8 @@ const AnimeCardDetails = (props) => {
   );
 };
 AnimeCardDetails.propTypes = {
-  link: PropTypes.string.isRequired,
-  coverLink: PropTypes.string.isRequired,
-  status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED"]).isRequired,
-  title: PropTypes.string.isRequired,
+  imagePath: PropTypes.string,
+  status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED"]),
+  romajiName: PropTypes.string,
 };
 export default AnimeCardDetails;
