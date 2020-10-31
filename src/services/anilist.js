@@ -18,7 +18,7 @@ anilist.getAnimesInfos = async function (ids) {
     ids,
   };
   const query = `
-  query ($idPage: Int, $perPage: Int, $ids: String) {
+  query ($idPage: Int, $perPage: Int, $ids: [Int]) {
     Page (page: $idPage, perPage: $perPage) {
        pageInfo {
          total
@@ -31,16 +31,19 @@ anilist.getAnimesInfos = async function (ids) {
          id
          title {
            romaji
+           english
+           native
          },
          status,
          coverImage {
            large
            color
-         }
+         },
+         bannerImage
        }
      }
    }`;
-  const options = def_options;
+  const options = { ...def_options };
   options.body = JSON.stringify({
     query: query,
     variables: variables,
@@ -50,15 +53,7 @@ anilist.getAnimesInfos = async function (ids) {
     const response = await fetch(config.ANILIST_API_URL, options);
     const json = await response.json();
     if (json.data && json.data.Page && json.data.Page.media) {
-      res = json.data.Page.media.map((m) => {
-        const { id, status, title, coverImage } = m;
-        return {
-          id,
-          status,
-          romajiName: title.romaji,
-          imagePath: coverImage.large,
-        };
-      });
+      res = json.data.Page.media;
     }
   } catch (e) {
     throw e;
@@ -86,6 +81,8 @@ anilist.getAnimesFromSearch = async function (search, nbMax) {
          id
          title {
            romaji
+           english
+           native
          },
          status,
          coverImage {
@@ -95,7 +92,7 @@ anilist.getAnimesFromSearch = async function (search, nbMax) {
        }
      }
    }`;
-  const options = def_options;
+  const options = { ...def_options };
   options.body = JSON.stringify({
     query: query,
     variables: variables,
@@ -105,15 +102,7 @@ anilist.getAnimesFromSearch = async function (search, nbMax) {
     const response = await fetch(config.ANILIST_API_URL, options);
     const json = await response.json();
     if (json.data && json.data.Page && json.data.Page.media) {
-      res = json.data.Page.media.map((m) => {
-        const { id, status, title, coverImage } = m;
-        return {
-          id,
-          status,
-          romajiName: title.romaji,
-          imagePath: coverImage.large,
-        };
-      });
+      res = json.data.Page.media;
     }
   } catch (e) {
     throw e;

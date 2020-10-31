@@ -26,16 +26,16 @@ const AnimeCardInfos = (props) => {
         <div className={`animeCover ${imgLoadingStatus}`}>
           {props.loading === false && (
             <img
-              alt={`cover of ${props.romajiName}`}
+              alt={`cover of ${props.title.romaji}`}
               className="animeImage"
-              src={props.imagePath}
+              src={props.coverImage.large}
               onLoad={handleImageLoaded}
               onError={handleImageErrored}
             ></img>
           )}
         </div>
         <div className={`animeBadge ${props.status}`}></div>
-        <div className="animeTitle">{props.romajiName}</div>
+        <div className="animeTitle">{props.title.romaji}</div>
       </div>
       {props.withDetails && showDetails && (
         <PopUp onClose={() => setShowDetail(false)}>
@@ -48,15 +48,31 @@ const AnimeCardInfos = (props) => {
 AnimeCardInfos.defaultProps = {
   status: "UNKNOWN",
   loading: false,
-  romajiName: "",
+  title: {
+    romaji: "",
+  },
   withDetails: true,
 };
 AnimeCardInfos.propTypes = {
-  imagePath: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
-  status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED"]).isRequired,
-  romajiName: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
+  coverImage: isRequiredIf(
+    PropTypes.shape({
+      large: PropTypes.string,
+      color: PropTypes.string,
+    }),
+    (props) => props.loading !== true
+  ),
+  status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED", "CANCELLED", "NOT_YET_RELEASED"]).isRequired,
+  title: isRequiredIf(
+    PropTypes.shape({
+      romaji: PropTypes.string,
+      english: PropTypes.string,
+      native: PropTypes.string,
+    }),
+    (props) => props.loading !== true
+  ),
   loading: PropTypes.bool,
   withDetails: PropTypes.bool,
   id: isRequiredIf(PropTypes.number, (props) => props.loading !== true),
+  bannerImage: isRequiredIf(PropTypes.string, (props) => props.loading !== true && props.withDetails),
 };
 export default AnimeCardInfos;

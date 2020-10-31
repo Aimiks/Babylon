@@ -21,7 +21,7 @@ const AnimeList = (props) => {
             withDetails={withDetails}
             loading={false}
             onClick={handleAnimeCardClick}
-            id={anime.id ? anime.id : anime.anilistId}
+            id={anime.id}
             {...anime}
           ></AnimeCard>
         ))
@@ -31,10 +31,9 @@ const AnimeList = (props) => {
 
   useEffect(() => {
     const length = animes ? animes.length : 0;
-    if (count > length) {
-      const prevLength = length;
-      const tmpAnimes = [...new Array(count - prevLength)].map((anime, i) => (
-        <AnimeCard key={prevLength + i} withDetails={false} loading={true}></AnimeCard>
+    if (length === 0) {
+      const tmpAnimes = [...new Array(count)].map((anime, i) => (
+        <AnimeCard key={i} withDetails={false} loading={true}></AnimeCard>
       ));
       setAnimesList(tmpAnimes);
     }
@@ -51,11 +50,20 @@ AnimeList.propTypes = {
   onAnimeCardClick: PropTypes.func,
   animes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      imagePath: PropTypes.string,
-      status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED"]),
-      romajiName: PropTypes.string,
+      coverImage: PropTypes.shape({
+        large: PropTypes.string,
+        color: PropTypes.string,
+      }),
+      status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED", "CANCELLED", "NOT_YET_RELEASED"]),
+      title: PropTypes.shape({
+        romaji: PropTypes.string,
+        english: PropTypes.string,
+        native: PropTypes.string,
+      }),
       loading: PropTypes.bool,
+      withDetails: PropTypes.bool,
+      id: PropTypes.number,
+      bannerImage: PropTypes.string,
     })
   ),
 };

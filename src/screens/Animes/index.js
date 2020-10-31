@@ -24,7 +24,7 @@ const AnimesPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const _animes = await api.getAllAnimeFromAPI();
+        const _animes = await api.getAllAnimes();
         setAnimes(_animes);
       } catch (e) {
         // need error handling
@@ -32,7 +32,7 @@ const AnimesPage = () => {
     })();
     (async () => {
       try {
-        const _nb = await api.countAllAnimeFromAPI();
+        const _nb = await api.countAllAnimes();
         setCount(_nb);
       } catch (e) {
         // need error handling

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AnimeList from "../../components/AnimeList/AnimeList";
 import anilist from "../../services/anilist";
+import api from "../../services/api";
+
 import SearchInput from "../../components/SearchInput/SearchInput";
 
 const FormAddAnime = (props) => {
@@ -26,6 +28,14 @@ const FormAddAnime = (props) => {
 
   const handleAnimeCardClick = (id) => {
     console.log(getAnimeFromId(id));
+    (async () => {
+      try {
+        const res = await api.addAnime(id);
+        console.log(res);
+      } catch (e) {
+        // need error handling
+      }
+    })();
   };
 
   return (

@@ -10,7 +10,6 @@ const AnimeCard = (props) => {
       props.onClick(props.id);
     }
   };
-
   return (
     <div className={`animeCard ${props.loading ? "loading" : ""}`} onClick={handleClick}>
       <AnimeCardInfos key={props.id} {...props} />
@@ -18,15 +17,11 @@ const AnimeCard = (props) => {
   );
 };
 AnimeCard.defaultProps = {
-  status: "UNKNOWN",
   loading: false,
-  romajiName: "",
 };
 AnimeCard.propTypes = {
-  imagePath: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
-  status: PropTypes.oneOf(["RELEASING", "UNKNOWN", "FINISHED"]).isRequired,
-  romajiName: isRequiredIf(PropTypes.string, (props) => props.loading !== true),
   loading: PropTypes.bool,
   onClick: PropTypes.func,
+  id: isRequiredIf(PropTypes.number, (props) => props.loading !== true),
 };
 export default AnimeCard;
